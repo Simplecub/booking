@@ -27,5 +27,11 @@ const getAvatar = (a, b) => {
   }
   return res
 }
+
+const isEscapeKey = (evt) => {
+  return evt.key ==='Escape'
+}
+
+
 const getElementsAmount = (array) => getRandomPositiveInteger(1, array.length);
-export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount}
+export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount, isEscapeKey}
