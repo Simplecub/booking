@@ -12,7 +12,7 @@ const TYPE_OF = {
 }
 
 
-
+//функция гегерации одного popup
 const getPopup = (item) => {
   const card = cardElement.cloneNode(true)
 
@@ -28,7 +28,7 @@ const getPopup = (item) => {
     })
   }
 
-getModifierLi(item.offer.features, allPopups,'popup__feature--')
+  getModifierLi(item.offer.features, allPopups, 'popup__feature--')
 
   // В .popup__photos Каждая из строк массива photos должна записываться как атрибут src соответствующего изображения
   card.querySelector('.popup__photos').querySelectorAll('.popup__photo').forEach((item) => item.remove())

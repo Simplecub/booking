@@ -28,4 +28,4 @@ const getAvatar = (a, b) => {
   return res
 }
 const getElementsAmount = (array) => getRandomPositiveInteger(1, array.length);
-export{getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar,getElementsAmount}
+export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount}

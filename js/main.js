@@ -1,4 +1,4 @@
-import {getAllAdverts} from "./adverts.js";
+import {getAllAdverts} from "./mock-adverts.js";
 import {getPopups} from "./adverts-popup.js";
 import {disableAdForm, enableAdForm} from "./form.js";
 

@@ -14,7 +14,7 @@ import {
   FEATURES,
   COUNT_ADVERTS,
   TYPE_ROOM
-} from "./data.js";
+} from "./mock-data.js";
 
 //класс для созания объявления
 class Advert {

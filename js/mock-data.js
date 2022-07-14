@@ -1,4 +1,3 @@
-
 const COUNT_ADVERTS = 10
 const TITLE = ['Супер', 'Мега', 'Круто', 'Дешево', 'Не дорого', 'Почти даром']
 const TYPE_ROOM = ['palace', 'flat', 'house', 'bungalow', 'hotel']
@@ -10,4 +9,4 @@ const PHOTOS_ARRAY = ['https://assets.htmlacademy.ru/content/intensive/javascrip
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg']
 
-export {COUNT_ADVERTS, TITLE, FEATURES, CHECKOUT_TIME, CHECKIN_TIME, DESCRIPTIONS_ARRAY, PHOTOS_ARRAY , TYPE_ROOM}
+export {COUNT_ADVERTS, TITLE, FEATURES, CHECKOUT_TIME, CHECKIN_TIME, DESCRIPTIONS_ARRAY, PHOTOS_ARRAY, TYPE_ROOM}
