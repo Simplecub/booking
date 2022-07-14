@@ -36,6 +36,7 @@ class Advert {
     lat: this.lat,
     lng: this.lng
   }
+
 }
 
 //генерация массива объявлений длиной COUNT_ADVERTS
