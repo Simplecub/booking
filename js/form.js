@@ -2,6 +2,8 @@ const adFormElement = document.querySelector('.ad-form')
 const filterFormElement = document.querySelector('.map__filters')
 const typeSelect = adFormElement.querySelector('#type')
 const priceElement = adFormElement.querySelector('#price')
+const timeInSelect = adFormElement.querySelector('#timein')
+const timeOutSelect = adFormElement.querySelector('#timeout')
 
 const disableAdForm = () => {
   adFormElement.classList.add('ad-form--disabled')
@@ -16,6 +18,7 @@ const enableAdForm = () => {
   filterFormElement.classList.remove('map__filters--disabled')
   filterFormElement.querySelectorAll('select').forEach((item) => item.disabled = false)
   setType()
+  setTime()
 }
 
 
@@ -50,5 +53,11 @@ const setType = () => {
   typeSelect.addEventListener('change', evt => selectType(evt.target.value))
 }
 
+const setTime = () => {
+  timeInSelect.addEventListener('change', evt => timeOutSelect.options.selectedIndex = evt.target.options.selectedIndex)
+  timeOutSelect.addEventListener('change', evt => timeInSelect.options.selectedIndex = evt.target.options.selectedIndex)
+
+
+}
 
 export {disableAdForm, enableAdForm}
