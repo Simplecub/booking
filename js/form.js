@@ -23,7 +23,6 @@ const enableAdForm = () => {
 
 
 const selectType = (value) => {
-  console.log(value)
   switch (value) {
     case ('bungalow'):
       priceElement.setAttribute('placeholder', '0');
@@ -56,8 +55,6 @@ const setType = () => {
 const setTime = () => {
   timeInSelect.addEventListener('change', evt => timeOutSelect.options.selectedIndex = evt.target.options.selectedIndex)
   timeOutSelect.addEventListener('change', evt => timeInSelect.options.selectedIndex = evt.target.options.selectedIndex)
-
-
 }
 
 export {disableAdForm, enableAdForm}
