@@ -26,32 +26,34 @@ const getRoomsCapacity = () => {
   if (rooms.value === '100' && capacity.value !== '0') {
     msg.push('Для 100 комнат выберите - не для гостей')
     console.log('100*!0')
-    return !msg.length
+    // return !msg.length
   }
   if (rooms.value !== '100' && capacity.value === '0') {
     msg.push('Для не для гостей выберите - 100 комнат')
     console.log('!100*0')
-    return !msg.length
+    //  return !msg.length
   }
   if (rooms.value < capacity.value) {
     msg.push('Комнат не может быть меньше гостей')
     console.log('Комнат не может быть меньше гостей');
-    return !msg.length
+    //  return !msg.length
   }
   if (rooms.value >= capacity.value) {
     console.log('good');
-    return true
+    //  return true
   }
   return !msg.length
 }
 
 Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
-Pristine.addValidator('capacity', getRoomsCapacity, () => msg, 5, false)
+//Pristine.addValidator('capacity', getRoomsCapacity, () => msg, 5, false)
 
 const addValidator = () => {
   const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
+  capacity.onchange = () => {
+    pristine.validate(rooms)
+  }
   pristine.validate();
-
   adFormElement.onsubmit = (evt) => {
     if (!pristine.validate() || 0) {
       console.log('stop-send-error');
