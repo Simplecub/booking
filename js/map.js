@@ -15,8 +15,6 @@ const map = L.map('map-canvas')
   })
   .setView({lat: 35.6883, lng: 139.7735}, 10)
 
-console.log('tgtgtghtgtgtgt')
-
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -48,8 +46,8 @@ mainPinMarker.on('moveend', (evt) => {
 
 });
 resetButton.addEventListener('click', () => {
- // addValidator(Pristine.destroy)
-  setTimeout(()=>addValidator(Pristine.reset), 1)
+  // addValidator(Pristine.destroy)
+  setTimeout(() => addValidator(Pristine.reset), 1)
   mainPinMarker.setLatLng({
     lat: 35.6883,
     lng: 139.7735,
@@ -66,17 +64,18 @@ const icon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
+
 getMarkersFromAdverts(10).forEach((item) => {
   const {lat, lng} = item.location
   const marker = L.marker({
-    lat,
-    lng,
-  },
-  {
-    icon,
-  },);
+      lat,
+      lng,
+    },
+    {
+      icon,
+    },);
 
   marker
     .addTo(map)
-   .bindPopup(getPopup(item))
+    .bindPopup(getPopup(item))
 });
