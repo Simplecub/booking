@@ -1,9 +1,9 @@
-const adFormElement = document.querySelector('.ad-form')
-const submitButton = adFormElement.querySelector('.ad-form__submit')
-const rooms = adFormElement.querySelector('#room_number')
-const capacity = adFormElement.querySelector('#capacity')
-const elem = adFormElement.querySelector('.ad-form__header')
-const setAddressElement = adFormElement.querySelector('#address')
+let adFormElement = document.querySelector('.ad-form')
+let submitButton = adFormElement.querySelector('.ad-form__submit')
+let rooms = adFormElement.querySelector('#room_number')
+let capacity = adFormElement.querySelector('#capacity')
+let elem = adFormElement.querySelector('.ad-form__header')
+let setAddressElement = adFormElement.querySelector('#address')
 const CONFIG_PRISTINE = {
   classTo: 'ad-form__element', //выбор элементов для валидации
   errorClass: 'form__error',  //добавляет класс (для изменения цвета текста если валидация не пройдена)
@@ -49,7 +49,7 @@ Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
 //Pristine.addValidator('capacity', getRoomsCapacity, () => msg, 5, false)
 
 const addValidator = (cb) => {
-  if (cb) {cb()}
+  if (cb) {cb();}
   const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
   capacity.addEventListener('change', () => pristine.validate(rooms));
 
@@ -60,11 +60,6 @@ const addValidator = (cb) => {
       evt.preventDefault()
     }
   }
-}
-
-const validAddress = () => {
-  setAddressElement.addEventListener('change', () => pristine.validate(setAddressElement))
-
 }
 
 export {addValidator}

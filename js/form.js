@@ -1,6 +1,8 @@
+import {addValidator} from "./validate.js";
+
 const adFormElement = document.querySelector('.ad-form')
 const filterFormElement = document.querySelector('.map__filters')
-const typeSelect = adFormElement.querySelector('#type')
+const typeSelectElement = adFormElement.querySelector('#type')
 const priceElement = adFormElement.querySelector('#price')
 const timeInSelect = adFormElement.querySelector('#timein')
 const timeOutSelect = adFormElement.querySelector('#timeout')
@@ -48,8 +50,9 @@ const selectType = (value) => {
 }
 
 const setType = () => {
-  selectType(typeSelect.value)
-  typeSelect.addEventListener('change', evt => selectType(evt.target.value))
+  selectType(typeSelectElement.value)
+  typeSelectElement.addEventListener('change', evt => {selectType(evt.target.value);
+  })
 }
 
 const setTime = () => {

@@ -46,6 +46,17 @@ const getPopup = (item) => {
   card.querySelector('.popup__text--time').textContent = `Заезд после ${item.offer.checkin}, выезд до ${item.offer.checkout}`
   card.querySelector('.popup__description').textContent = item.offer.description
   card.querySelector('.popup__avatar').src = item.author.avatar
+  //если блок пустой то удаляем его
+  card.querySelectorAll('.popup__description').forEach((item) => {
+    if (!item.textContent) {
+      console.log(item);
+      item.classList.add('hidden')
+    }
+  })
+  if (card.querySelectorAll('.popup__feature').length === 0) {
+    card.querySelector('.popup__features').classList.add('hidden')
+  }
+
   return card
 }
 
@@ -57,5 +68,5 @@ const getPopups = (array) => {
   return cardBox
 }
 
-export {getPopups,getPopup}
+export {getPopups, getPopup}
 

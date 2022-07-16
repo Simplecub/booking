@@ -43,6 +43,8 @@ mainPinMarker.on('moveend', (evt) => {
 
 });
 resetButton.addEventListener('click', () => {
+ // addValidator(Pristine.destroy)
+  setTimeout(()=>addValidator(Pristine.reset), 1)
   mainPinMarker.setLatLng({
     lat: 35.6883,
     lng: 139.7735,

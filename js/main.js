@@ -21,9 +21,5 @@ const getMarkersFromAdverts = (count) =>{
 
  */
 disableAdForm();
-const setAddressElement = document.querySelector('#address')
-setAddressElement.addEventListener('input', (evt) => console.log(evt.target.value))
 
-
-//addValidator()
 export {getMarkersFromAdverts,enableAdForm}
