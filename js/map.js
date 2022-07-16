@@ -3,12 +3,17 @@ import {getPopup} from "./adverts-popup.js";
 import {getMarkersFromAdverts} from "./main.js";
 
 import {disableAdForm, enableAdForm} from "./form.js";
+
 const adFormElement = document.querySelector('.ad-form')
 const setAddressElement = adFormElement.querySelector('#address')
 const resetButton = adFormElement.querySelector('.ad-form__reset')
 const map = L.map('map-canvas')
-  .on('load', ()=>{console.log('map loaded'); enableAdForm(); addValidator()})
-  .setView({lat:35.6883,lng:139.7735}, 10)
+  .on('load', () => {
+    console.log('map loaded');
+    enableAdForm();
+    addValidator()
+  })
+  .setView({lat: 35.6883, lng: 139.7735}, 10)
 
 console.log('tgtgtghtgtgtgt')
 
@@ -38,7 +43,7 @@ mainPinMarker.addTo(map);
 
 mainPinMarker.on('moveend', (evt) => {
   console.log(evt.target.getLatLng());
-  setAddressElement.value = evt.target.getLatLng();
+  setAddressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
   addValidator(Pristine.reset)
 
 });
