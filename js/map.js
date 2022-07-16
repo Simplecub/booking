@@ -1,11 +1,13 @@
-import {getAllAdverts} from "./mock-adverts.js";
+import {addValidator} from "./validate.js";
 import {getPopup} from "./adverts-popup.js";
 import {getMarkersFromAdverts} from "./main.js";
 
-const adForm = document.querySelector('.ad-form')
-const resetButton = adForm.querySelector('.ad-form__reset')
+import {disableAdForm, enableAdForm} from "./form.js";
+const adFormElement = document.querySelector('.ad-form')
+const setAddressElement = adFormElement.querySelector('#address')
+const resetButton = adFormElement.querySelector('.ad-form__reset')
 const map = L.map('map-canvas')
-  .on('load', ()=>{console.log('map loaded')})
+  .on('load', ()=>{console.log('map loaded'); enableAdForm(); addValidator()})
   .setView({lat:35.6883,lng:139.7735}, 10)
 
 console.log('tgtgtghtgtgtgt')
@@ -36,15 +38,18 @@ mainPinMarker.addTo(map);
 
 mainPinMarker.on('moveend', (evt) => {
   console.log(evt.target.getLatLng());
+  setAddressElement.value = evt.target.getLatLng();
+  addValidator(Pristine.reset)
+
 });
 resetButton.addEventListener('click', () => {
   mainPinMarker.setLatLng({
-    lat: 59.96831,
-    lng: 30.31748,
+    lat: 35.6883,
+    lng: 139.7735,
   });
   map.setView({
-    lat: 59.96831,
-    lng: 30.31748,
+    lat: 35.6883,
+    lng: 139.7735,
   }, 10);
 });
 // mainPinMarker.remove();
@@ -54,7 +59,7 @@ const icon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
-getMarkersFromAdverts(4).forEach((item) => {
+getMarkersFromAdverts(10).forEach((item) => {
   const {lat, lng} = item.location
   const marker = L.marker({
     lat,

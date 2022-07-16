@@ -3,7 +3,7 @@ const submitButton = adFormElement.querySelector('.ad-form__submit')
 const rooms = adFormElement.querySelector('#room_number')
 const capacity = adFormElement.querySelector('#capacity')
 const elem = adFormElement.querySelector('.ad-form__header')
-
+const setAddressElement = adFormElement.querySelector('#address')
 const CONFIG_PRISTINE = {
   classTo: 'ad-form__element', //выбор элементов для валидации
   errorClass: 'form__error',  //добавляет класс (для изменения цвета текста если валидация не пройдена)
@@ -48,9 +48,11 @@ const getRoomsCapacity = () => {
 Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
 //Pristine.addValidator('capacity', getRoomsCapacity, () => msg, 5, false)
 
-const addValidator = () => {
+const addValidator = (cb) => {
+  if (cb) {cb()}
   const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
-  capacity.addEventListener('change', () => pristine.validate(rooms))
+  capacity.addEventListener('change', () => pristine.validate(rooms));
+
   pristine.validate();
   adFormElement.onsubmit = (evt) => {
     if (!pristine.validate() || 0) {
@@ -60,5 +62,9 @@ const addValidator = () => {
   }
 }
 
+const validAddress = () => {
+  setAddressElement.addEventListener('change', () => pristine.validate(setAddressElement))
+
+}
 
 export {addValidator}

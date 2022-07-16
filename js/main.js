@@ -8,17 +8,22 @@ import {addValidator} from "./validate.js";
 
 const getMarkersFromAdverts = (count) =>{
   let arr = getAllAdverts(count)
-  getPopups(arr)
+  //getPopups(arr)
   return arr
 
 }
 //console.log();
-
+/*
 (function () {
   disableAdForm();
   setTimeout(() => enableAdForm(), 5000)
 }());
 
+ */
+disableAdForm();
+const setAddressElement = document.querySelector('#address')
+setAddressElement.addEventListener('input', (evt) => console.log(evt.target.value))
 
-addValidator()
-export {getMarkersFromAdverts}
+
+//addValidator()
+export {getMarkersFromAdverts,enableAdForm}
