@@ -40,8 +40,8 @@ class Advert {
 }
 
 //генерация массива объявлений длиной COUNT_ADVERTS
-const getAllAdverts = () => {
-  return Array.from(Array(COUNT_ADVERTS), () => new Advert())
+const getAllAdverts = (COUNT) => {
+  return Array.from(Array(COUNT), () => new Advert())
 }
 
 export {getAllAdverts}

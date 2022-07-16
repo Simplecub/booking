@@ -57,5 +57,5 @@ const getPopups = (array) => {
   return cardBox
 }
 
-export {getPopups}
+export {getPopups,getPopup}
 

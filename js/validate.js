@@ -50,9 +50,7 @@ Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
 
 const addValidator = () => {
   const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
-  capacity.onchange = () => {
-    pristine.validate(rooms)
-  }
+  capacity.addEventListener('change', () => pristine.validate(rooms))
   pristine.validate();
   adFormElement.onsubmit = (evt) => {
     if (!pristine.validate() || 0) {

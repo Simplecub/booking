@@ -6,8 +6,13 @@ import {addValidator} from "./validate.js";
 
 //console.log(getAllAdverts());
 
+const getMarkersFromAdverts = (count) =>{
+  let arr = getAllAdverts(count)
+  getPopups(arr)
+  return arr
 
-console.log(getPopups(getAllAdverts()));
+}
+//console.log();
 
 (function () {
   disableAdForm();
@@ -16,3 +21,4 @@ console.log(getPopups(getAllAdverts()));
 
 
 addValidator()
+export {getMarkersFromAdverts}
