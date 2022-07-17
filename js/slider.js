@@ -53,11 +53,10 @@ const setPriceConfig = (evt) =>{
 
 }
 typeElement.addEventListener('change', setPriceConfig)
-priceElement.addEventListener('input', getDebounce(()=> sliderElement.noUiSlider.set(priceElement.value), 5000))
+priceElement.addEventListener('input', getDebounce(()=> sliderElement.noUiSlider.set(priceElement.value), 500))
 
 sliderElement.noUiSlider.on('update', (...rest) => {
  // console.log(rest);
   priceElement.value = sliderElement.noUiSlider.get();
   addValidator(priceElement)
-//  photoPreviewElement.style.filter = `${EFFECTS[evt.target.value].effect.filter}(${effectLevelValueElement.value}${EFFECTS[evt.target.value].effect.unit})`;
 })
