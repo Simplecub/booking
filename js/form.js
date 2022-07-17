@@ -52,6 +52,7 @@ const selectType = (value) => {
 const setType = () => {
   selectType(typeSelectElement.value)
   typeSelectElement.addEventListener('change', evt => {selectType(evt.target.value);
+  // addValidator(priceElement)
   })
 }
 

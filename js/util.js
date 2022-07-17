@@ -32,6 +32,15 @@ const isEscapeKey = (evt) => {
   return evt.key ==='Escape'
 }
 
+//функция обновление списка элементов, подходящих под фильтры, -  не чаще, чем один раз в полсекунды.
+const getDebounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 
 const getElementsAmount = (array) => getRandomPositiveInteger(1, array.length);
-export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount, isEscapeKey}
+export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount, isEscapeKey, getDebounce}

@@ -11,7 +11,7 @@ const map = L.map('map-canvas')
   .on('load', () => {
     console.log('map loaded');
     enableAdForm();
-    addValidator()
+   addValidator()
   })
   .setView({lat: 35.6883, lng: 139.7735}, 10)
 
@@ -42,12 +42,12 @@ mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
   console.log(evt.target.getLatLng());
   setAddressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
-  addValidator(Pristine.reset)
+  addValidator(setAddressElement)
 
 });
 resetButton.addEventListener('click', () => {
   // addValidator(Pristine.destroy)
-  setTimeout(() => addValidator(Pristine.reset), 1)
+  //setTimeout(() => addValidator(Pristine.reset), 1)
   mainPinMarker.setLatLng({
     lat: 35.6883,
     lng: 139.7735,
