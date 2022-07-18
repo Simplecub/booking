@@ -85,6 +85,7 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
     marker
       .addTo(map)
       .bindPopup(getPopup(item))
+    //  .bindPopup(getPopup(item))
   });
 }
 

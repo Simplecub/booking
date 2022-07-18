@@ -18,17 +18,17 @@ const getPopup = (item) => {
 
 // модификатор - popup__features
   const allPopups = card.querySelectorAll('.popup__feature')
+
   const getModifierLi = (item, selector, classItem) => {
-    const modifiers = item.map((feat) => classItem + feat);
-    selector.forEach((listItem) => {
-      const modifier = listItem.classList[1]
+  const modifiers = item.map((feat) => classItem + feat);
+    selector.forEach((listItem) => {const modifier = listItem.classList[1]
       if (!modifiers.includes(modifier)) {
         listItem.remove()
       }
     })
   }
 
-  getModifierLi(item.offer.features, allPopups, 'popup__feature--')
+  getModifierLi([item.offer.features], allPopups, 'popup__feature--')
 
   // В .popup__photos Каждая из строк массива photos должна записываться как атрибут src соответствующего изображения
   card.querySelector('.popup__photos').querySelectorAll('.popup__photo').forEach((item) => item.remove())
@@ -56,7 +56,6 @@ const getPopup = (item) => {
   if (card.querySelectorAll('.popup__feature').length === 0) {
     card.querySelector('.popup__features').classList.add('hidden')
   }
-
   return card
 }
 
