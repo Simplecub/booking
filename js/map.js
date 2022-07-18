@@ -66,16 +66,23 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
     setAddressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
     startValidate(setAddressElement)
   });
-
+//мега -ресет Оо
   resetButton.addEventListener('click', () => {
     setDefaultViewMap();
     adFormElement.reset()
-    setTimeout(() => {startValidate(setAddressElement);startValidate(roomsElement); startValidate(priceElement); startValidate(titleElement) }, 400)
+    setTimeout(() => {
+      startValidate(setAddressElement);
+      startValidate(roomsElement);
+      startValidate(priceElement);
+      startValidate(titleElement)
+    }, 400)
 
     cb4();
     cb1();
     cb3(1)
-   if (document.querySelector('.leaflet-popup')) {document.querySelector('.leaflet-popup').remove()}
+    if (document.querySelector('.leaflet-popup')) {
+      document.querySelector('.leaflet-popup').remove()
+    }
   });
 
   array.forEach((item) => {

@@ -9,7 +9,7 @@ const getData = async (onsuccess, onFail) => {
     const array = await response.json();
     onsuccess(array);
   } catch {
-    onFail('Сервер не доступен');
+    onFail('Сервер не доступен!');
   }
 };
 
@@ -28,7 +28,7 @@ const sendData = async (onSuccess, onFail, body) => {
       onFail('Не удалось отправить форму. Попробуйте ещё');
     }
   } catch {
-   // onFail('Не удалось отправить форму');
+    onFail('Не удалось отправить форму');
   }
 };
 

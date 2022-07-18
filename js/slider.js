@@ -32,7 +32,7 @@ const getUiSlider = (stop) => {
   console.log(min)
   if (stop) {
     let config = PRICE[typeElement.value];
-    priceElement.setAttribute('value', config.min) ;
+    priceElement.setAttribute('value', config.min);
     console.log(config.min)
     sliderElement.noUiSlider.updateOptions({
       range: {
@@ -74,7 +74,6 @@ const getUiSlider = (stop) => {
       priceElement.value = sliderElement.noUiSlider.get();
       startValidate(priceElement)
     })
-
   }
 }
 

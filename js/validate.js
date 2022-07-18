@@ -47,18 +47,18 @@ const getRoomsCapacity = () => {
   }
   if (roomsElement.value >= capacityElement.value) {
     console.log('good');
-     // return true
+    // return true
   }
   return !msg.length
 }
 
 //функция валидации цены жилья
 let errorsPrice = []
-const getValidPrice = ()=> {
- errorsPrice.length = 0;
+const getValidPrice = () => {
+  errorsPrice.length = 0;
   if (Number(priceElement.value) < Number(priceElement.min)) {
     console.log('minprise<')
-errorsPrice.push(`Минимальная цена ${Number(priceElement.min)} руб`)
+    errorsPrice.push(`Минимальная цена ${Number(priceElement.min)} руб`)
   }
   return !errorsPrice.length
 }
@@ -66,47 +66,50 @@ errorsPrice.push(`Минимальная цена ${Number(priceElement.min)} р
 const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
 
 const startValidate = (cb) => {
-   if (cb) {
-   pristine.validate(cb);
+  if (cb) {
+    pristine.validate(cb);
     console.log('dfd')
   } else {
-     pristine.addValidator(roomsElement, getRoomsCapacity, () => msg, 5, false)
-     pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
-     capacityElement.addEventListener('change', () => {
-       pristine.validate(roomsElement)
-     });
+    pristine.addValidator(roomsElement, getRoomsCapacity, () => msg, 5, false)
+    pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
+    capacityElement.addEventListener('change', () => {
+      pristine.validate(roomsElement)
+    });
 
-     pristine.validate();
-     adFormElement.onsubmit = (evt) => {
-       if (!pristine.validate() || 0) {
-         console.log('stop-send-error');
-         evt.preventDefault()
-       } else {
-         evt.preventDefault()
-         sendData(
-           () => {
-             showSuccessMsg()
-             setDefaultViewMap();
-             adFormElement.reset()
-             setTimeout(() => {startValidate(setAddressElement);startValidate(roomsElement); startValidate(priceElement); startValidate(titleElement) }, 400)
-             disableAdForm()
-             enableAdForm()
-             getUiSlider(1)
+    pristine.validate();
+    adFormElement.onsubmit = (evt) => {
+      if (!pristine.validate() || 0) {
+        console.log('stop-send-error');
+        evt.preventDefault()
+      } else {
+        evt.preventDefault()
+        sendData(
+          () => {
+            showSuccessMsg()
+            setDefaultViewMap();
+            adFormElement.reset()
+            setTimeout(() => {
+              startValidate(setAddressElement);
+              startValidate(roomsElement);
+              startValidate(priceElement);
+              startValidate(titleElement)
+            }, 400)
+            disableAdForm()
+            enableAdForm()
+            getUiSlider(1)
+            if (document.querySelector('.leaflet-popup')) {
+              document.querySelector('.leaflet-popup').remove()
+            }
+          },
+          () => {
+            showFailMsg('Ошибка размещения объявления')
 
-           },
-           ()=> {
-             showFailMsg()
+          },
+          new FormData(evt.target)
+        )
 
-           },
-           new  FormData(evt.target)
-
-         )
-
-
-
-
-       }
-     }
-   }
+      }
+    }
+  }
 }
 export {startValidate}
