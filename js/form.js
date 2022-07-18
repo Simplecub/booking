@@ -1,4 +1,3 @@
-import {startValidate} from "./validate.js";
 
 const adFormElement = document.querySelector('.ad-form')
 const filterFormElement = document.querySelector('.map__filters')

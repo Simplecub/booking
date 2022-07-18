@@ -85,8 +85,8 @@ const startValidate = (cb) => {
   } else {
      pristine.addValidator(rooms, getRoomsCapacity, () => msg, 5, false)
      pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
-  //   pristine.addValidator(setAddressElement, getValidAddress, () => errorAddress, 5, false)
-//  setAddressElement.addEventListener('change', () => pristine.validate(setAddressElement))
+   //  pristine.addValidator(setAddressElement, getValidAddress, () => errorAddress, 5, false)
+// setAddressElement.addEventListener('input', () => pristine.validate(setAddressElement))
      capacity.addEventListener('change', () => {
        pristine.validate(rooms)
      });

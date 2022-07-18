@@ -13,31 +13,6 @@ const PRICE= Object.freeze({
   palace: {min: 10000, max: 100000, start: 10000, step: 1}
 });
 
-
-let min = Number(priceElement.min)
-console.log(min)
-noUiSlider.create(sliderElement, {
-  range: {
-    min: min,
-    max: 100000,
-  },
-  start: 0,
-  step: 1,
-  connect: 'lower',
-  format: {
-    //  to: (value) => value.toFixed(!Number.isInteger(value))
-    to: function (value) {
-      if (Number.isInteger(value)) {
-        return value.toFixed(0);
-      }
-      return value.toFixed(0);
-    },
-    from:  function (value) {
-      return parseFloat(value);
-    }
-  },
-})
-
 const setPriceConfig = (evt) =>{
   let config = PRICE[evt.target.value];
   console.log((config))
@@ -50,13 +25,45 @@ const setPriceConfig = (evt) =>{
     step: config.step,
     connect: 'lower',
   });
-
 }
-typeElement.addEventListener('change', setPriceConfig)
-priceElement.addEventListener('change', getDebounce(()=> sliderElement.noUiSlider.set(priceElement.value), 500))
 
-sliderElement.noUiSlider.on('update', (...rest) => {
- // console.log(rest);
-  priceElement.value = sliderElement.noUiSlider.get();
-  startValidate(priceElement)
-})
+let min = Number(priceElement.min)
+
+const getUiSlider = (stop) => {
+  if (stop) {
+    sliderElement.noUiSlider.destroy()
+  } else {
+    noUiSlider.create(sliderElement, {
+      range: {
+        min: min,
+        max: 100000,
+      },
+      start: 0,
+      step: 1,
+      connect: 'lower',
+      format: {
+        //  to: (value) => value.toFixed(!Number.isInteger(value))
+        to: function (value) {
+          if (Number.isInteger(value)) {
+            return value.toFixed(0);
+          }
+          return value.toFixed(0);
+        },
+        from: function (value) {
+          return parseFloat(value);
+        }
+      },
+    })
+
+    typeElement.addEventListener('change', setPriceConfig)
+    priceElement.addEventListener('change', getDebounce(() => sliderElement.noUiSlider.set(priceElement.value), 500))
+
+    sliderElement.noUiSlider.on('update', (...rest) => {
+      priceElement.value = sliderElement.noUiSlider.get();
+      startValidate(priceElement)
+    })
+  }
+}
+
+
+export {getUiSlider}
