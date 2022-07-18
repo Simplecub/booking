@@ -3,6 +3,9 @@ import {getPopup} from "./adverts-popup.js";
 
 const adFormElement = document.querySelector('.ad-form')
 const setAddressElement = adFormElement.querySelector('#address')
+const roomsElement = adFormElement.querySelector('#room_number')
+const titleElement = adFormElement.querySelector('#title')
+const priceElement = adFormElement.querySelector('#price')
 const resetButton = adFormElement.querySelector('.ad-form__reset')
 
 const map = L.map('map-canvas')
@@ -66,12 +69,13 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
 
   resetButton.addEventListener('click', () => {
     setDefaultViewMap();
-    setTimeout(() => startValidate(setAddressElement), 400)
     adFormElement.reset()
+    setTimeout(() => {startValidate(setAddressElement);startValidate(roomsElement); startValidate(priceElement); startValidate(titleElement) }, 400)
+
     cb4();
     cb1();
     cb3(1)
-    document.querySelector('.leaflet-popup').remove()
+   if (document.querySelector('.leaflet-popup')) {document.querySelector('.leaflet-popup').remove()}
   });
 
   array.forEach((item) => {
@@ -90,4 +94,4 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
   });
 }
 
-export {getMap}
+export {getMap, setDefaultViewMap}

@@ -2,10 +2,11 @@ import {sendData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 import {disableAdForm, enableAdForm} from "./form.js";
 import {getUiSlider} from "./slider.js";
+import {setDefaultViewMap} from "./map.js";
 
-let adFormElement = document.querySelector('.ad-form')
-let rooms = adFormElement.querySelector('#room_number')
-let capacity = adFormElement.querySelector('#capacity')
+const adFormElement = document.querySelector('.ad-form')
+const rooms = adFormElement.querySelector('#room_number')
+const capacity = adFormElement.querySelector('#capacity')
 
 const priceElement = document.querySelector('#price')
 const CONFIG_PRISTINE = {
@@ -83,10 +84,13 @@ const startValidate = (cb) => {
          sendData(
            () => {
              showSuccessMsg()
+             setDefaultViewMap();
+             setTimeout(() => startValidate(priceElement), 400)
              adFormElement.reset()
-             disableAdForm()
-             enableAdForm()
-             getUiSlider()
+            // disableAdForm()
+            // enableAdForm()
+            // getUiSlider()
+           //  setTimeout(()=>startValidate(adFormElement), 500)
            },
            ()=> {
              showFailMsg()

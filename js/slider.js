@@ -32,6 +32,8 @@ const getUiSlider = (stop) => {
   console.log(min)
   if (stop) {
     let config = PRICE[typeElement.value];
+    priceElement.setAttribute('value', config.min) ;
+    console.log(config.min)
     sliderElement.noUiSlider.updateOptions({
       range: {
         min: config.min,
@@ -41,6 +43,7 @@ const getUiSlider = (stop) => {
       step: config.step,
       connect: 'lower',
     })
+
   } else {
     noUiSlider.create(sliderElement, {
       range: {
