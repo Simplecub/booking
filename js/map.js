@@ -71,6 +71,7 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
     cb4();
     cb1();
     cb3(1)
+    document.querySelector('.leaflet-popup').remove()
   });
 
   array.forEach((item) => {

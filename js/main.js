@@ -6,6 +6,7 @@ import {getMap} from "./map.js";
 import {COUNT_ADVERTS} from "./mock-data.js";
 import {getUiSlider} from "./slider.js";
 import {getData} from "./api.js";
+import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 
 
 disableAdForm();
@@ -13,8 +14,10 @@ disableAdForm();
 //const array = getAllAdverts(COUNT_ADVERTS)
 getData((array) => {
   getMap(enableAdForm, startValidate, getUiSlider, disableAdForm, array);
-}, (i)=>console.log(i))
+}, (i)=>{
+  console.log(i)})
 
-
+//showFailMsg()
+// onSuccess()
 
 

@@ -13,5 +13,25 @@ const getData = async (onsuccess, onFail) => {
   }
 };
 
+const sendData = async (onSuccess, onFail, body) => {
+  try {
+    const response = await fetch(
+      ' https://26.javascript.pages.academy/keksobooking',
+      {
+        method: 'POST',
+        body,
+      },
+    );
+    if (response.ok) {
+      onSuccess();   //нужно закрыть окно (удалить евент листенер, добавить хидден) //разблочить кнопку отправки
+    } else {
+      onFail('Не удалось отправить форму. Попробуйте ещё');
+    }
+  } catch {
+   // onFail('Не удалось отправить форму');
+  }
+};
 
-export {getData}
+
+
+export {getData, sendData}

@@ -1,3 +1,8 @@
+import {sendData} from "./api.js";
+import {showFailMsg, showSuccessMsg} from "./events-messages.js";
+import {disableAdForm, enableAdForm} from "./form.js";
+import {getUiSlider} from "./slider.js";
+
 let adFormElement = document.querySelector('.ad-form')
 let rooms = adFormElement.querySelector('#room_number')
 let capacity = adFormElement.querySelector('#capacity')
@@ -73,6 +78,27 @@ const startValidate = (cb) => {
        if (!pristine.validate() || 0) {
          console.log('stop-send-error');
          evt.preventDefault()
+       } else {
+         evt.preventDefault()
+         sendData(
+           () => {
+             showSuccessMsg()
+             adFormElement.reset()
+             disableAdForm()
+             enableAdForm()
+             getUiSlider()
+           },
+           ()=> {
+             showFailMsg()
+
+           },
+           new  FormData(evt.target)
+
+         )
+
+
+
+
        }
      }
    }
