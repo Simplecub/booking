@@ -29,7 +29,7 @@ const getAvatar = (a, b) => {
 }
 
 const isEscapeKey = (evt) => {
-  return evt.key ==='Escape'
+  return evt.key === 'Escape'
 }
 
 //функция обновление списка элементов, подходящих под фильтры, -  не чаще, чем один раз в полсекунды.
@@ -43,4 +43,12 @@ const getDebounce = (callback, timeoutDelay) => {
 
 
 const getElementsAmount = (array) => getRandomPositiveInteger(1, array.length);
-export {getRandomPositiveInteger, getRandomPositiveFloat, getShuffleArray, getAvatar, getElementsAmount, isEscapeKey, getDebounce}
+export {
+  getRandomPositiveInteger,
+  getRandomPositiveFloat,
+  getShuffleArray,
+  getAvatar,
+  getElementsAmount,
+  isEscapeKey,
+  getDebounce
+}

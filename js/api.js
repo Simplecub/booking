@@ -1,5 +1,3 @@
-
-
 const getData = async (onsuccess, onFail) => {
   try {
     const response = await fetch('https://26.javascript.pages.academy/keksobooking/data');
@@ -31,7 +29,6 @@ const sendData = async (onSuccess, onFail, body) => {
     onFail('Не удалось отправить форму');
   }
 };
-
 
 
 export {getData, sendData}

@@ -20,8 +20,9 @@ const getPopup = (item) => {
   const allPopups = card.querySelectorAll('.popup__feature')
 
   const getModifierLi = (item, selector, classItem) => {
-  const modifiers = item.map((feat) => classItem + feat);
-    selector.forEach((listItem) => {const modifier = listItem.classList[1]
+    const modifiers = item.map((feat) => classItem + feat);
+    selector.forEach((listItem) => {
+      const modifier = listItem.classList[1]
       if (!modifiers.includes(modifier)) {
         listItem.remove()
       }
