@@ -5,8 +5,10 @@ import {getUiSlider} from "./slider.js";
 import {setDefaultViewMap} from "./map.js";
 
 const adFormElement = document.querySelector('.ad-form')
-const rooms = adFormElement.querySelector('#room_number')
-const capacity = adFormElement.querySelector('#capacity')
+const roomsElement = adFormElement.querySelector('#room_number')
+const capacityElement = adFormElement.querySelector('#capacity')
+const titleElement = adFormElement.querySelector('#title')
+const setAddressElement = adFormElement.querySelector('#address')
 
 const priceElement = document.querySelector('#price')
 const CONFIG_PRISTINE = {
@@ -28,22 +30,22 @@ adFormElement.querySelectorAll('input').forEach((item) => {
 let msg = []
 const getRoomsCapacity = () => {
   msg.length = 0
-  if (rooms.value === '100' && capacity.value !== '0') {
+  if (roomsElement.value === '100' && capacityElement.value !== '0') {
     msg.push('Для 100 комнат выберите - не для гостей')
     console.log('100*!0')
     // return !msg.length
   }
-  if (rooms.value !== '100' && capacity.value === '0') {
+  if (roomsElement.value !== '100' && capacityElement.value === '0') {
     msg.push('Для не для гостей выберите - 100 комнат')
     console.log('!100*0')
     //  return !msg.length
   }
-  if (rooms.value < capacity.value) {
+  if (roomsElement.value < capacityElement.value) {
     msg.push('Комнат не может быть меньше гостей')
     console.log('Комнат не может быть меньше гостей');
     //  return !msg.length
   }
-  if (rooms.value >= capacity.value) {
+  if (roomsElement.value >= capacityElement.value) {
     console.log('good');
      // return true
   }
@@ -68,10 +70,10 @@ const startValidate = (cb) => {
    pristine.validate(cb);
     console.log('dfd')
   } else {
-     pristine.addValidator(rooms, getRoomsCapacity, () => msg, 5, false)
+     pristine.addValidator(roomsElement, getRoomsCapacity, () => msg, 5, false)
      pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
-     capacity.addEventListener('change', () => {
-       pristine.validate(rooms)
+     capacityElement.addEventListener('change', () => {
+       pristine.validate(roomsElement)
      });
 
      pristine.validate();
@@ -85,12 +87,12 @@ const startValidate = (cb) => {
            () => {
              showSuccessMsg()
              setDefaultViewMap();
-             setTimeout(() => startValidate(priceElement), 400)
              adFormElement.reset()
-            // disableAdForm()
-            // enableAdForm()
-            // getUiSlider()
-           //  setTimeout(()=>startValidate(adFormElement), 500)
+             setTimeout(() => {startValidate(setAddressElement);startValidate(roomsElement); startValidate(priceElement); startValidate(titleElement) }, 400)
+             disableAdForm()
+             enableAdForm()
+             getUiSlider(1)
+
            },
            ()=> {
              showFailMsg()
