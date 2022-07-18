@@ -12,7 +12,6 @@ import {
   CHECKIN_TIME,
   CHECKOUT_TIME,
   FEATURES,
-  COUNT_ADVERTS,
   TYPE_ROOM
 } from "./mock-data.js";
 
