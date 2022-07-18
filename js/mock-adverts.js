@@ -28,7 +28,7 @@ class Advert {
     guests: getRandomPositiveInteger(1, 8),
     checkin: CHECKIN_TIME[getRandomPositiveInteger(0, CHECKIN_TIME.length - 1)],
     checkout: CHECKOUT_TIME[getRandomPositiveInteger(0, CHECKOUT_TIME.length - 1)],
-    features: getShuffleArray(FEATURES, getRandomPositiveInteger(0, 1)),
+    features: getShuffleArray(FEATURES, getRandomPositiveInteger(0, FEATURES.length - 1)),
     description: getShuffleArray(DESCRIPTIONS_ARRAY, getRandomPositiveInteger(0, 1)).join(' '),
     photos: getShuffleArray(PHOTOS_ARRAY, getElementsAmount(PHOTOS_ARRAY))
   }

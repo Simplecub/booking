@@ -1,5 +1,5 @@
 import {getDebounce} from "./util.js";
-import {addValidator} from "./validate.js";
+import {startValidate} from "./validate.js";
 
 const sliderElement = document.querySelector('.ad-form__slider')
 const priceElement = document.querySelector('#price')
@@ -53,10 +53,10 @@ const setPriceConfig = (evt) =>{
 
 }
 typeElement.addEventListener('change', setPriceConfig)
-priceElement.addEventListener('input', getDebounce(()=> sliderElement.noUiSlider.set(priceElement.value), 500))
+priceElement.addEventListener('change', getDebounce(()=> sliderElement.noUiSlider.set(priceElement.value), 500))
 
 sliderElement.noUiSlider.on('update', (...rest) => {
  // console.log(rest);
   priceElement.value = sliderElement.noUiSlider.get();
-  addValidator(priceElement)
+  startValidate(priceElement)
 })

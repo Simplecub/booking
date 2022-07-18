@@ -1,17 +1,13 @@
 import {getAllAdverts} from "./mock-adverts.js";
 import {getPopups} from "./adverts-popup.js";
 import {disableAdForm, enableAdForm} from "./form.js";
-import {addValidator} from "./validate.js";
-
+import {startValidate} from "./validate.js";
+import {getMap} from "./map.js";
+import {COUNT_ADVERTS} from "./mock-data.js";
 
 //console.log(getAllAdverts());
 
-const getMarkersFromAdverts = (count) =>{
-  let arr = getAllAdverts(count)
-  //getPopups(arr)
-  return arr
 
-}
 //console.log();
 /*
 (function () {
@@ -22,4 +18,6 @@ const getMarkersFromAdverts = (count) =>{
  */
 disableAdForm();
 
-export {getMarkersFromAdverts,enableAdForm}
+getMap(enableAdForm, startValidate, getAllAdverts(COUNT_ADVERTS))
+
+export {enableAdForm}

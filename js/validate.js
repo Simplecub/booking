@@ -75,7 +75,7 @@ let errorAddress =[]
 //Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
 const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
 let run
-const addValidator = (cb) => {
+const startValidate = (cb) => {
  // const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
 
    if (cb) {
@@ -90,9 +90,8 @@ const addValidator = (cb) => {
      capacity.addEventListener('change', () => {
        pristine.validate(rooms)
      });
-     selectType.addEventListener('change', () => {
-       pristine.validate(priceElement)
-     })
+ //    selectType.addEventListener('change', () => {
+//       pristine.validate(priceElement)})
      //  priceElement.addEventListener('change', () => pristine.validate(priceElement))
      // setAddressElement.addEventListener('input', () => pristine.validate(setAddressElement))
      //  const sliderElement = document.querySelector('.ad-form__slider')
@@ -106,4 +105,4 @@ const addValidator = (cb) => {
      }
    }
 }
-export {addValidator}
+export {startValidate}
