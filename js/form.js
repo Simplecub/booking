@@ -11,6 +11,10 @@ const disableAdForm = () => {
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.setAttribute('disabled', 'disabled'))
   filterFormElement.classList.add('map__filters--disabled')
   filterFormElement.querySelectorAll('select').forEach((item) => item.setAttribute('disabled', 'disabled'))
+  typeSelectElement.removeEventListener('change', selectType);
+  timeInSelect.removeEventListener('change', setTimeOut)
+  timeOutSelect.removeEventListener('change',setTimeIn )
+
 }
 
 const enableAdForm = () => {
@@ -23,8 +27,9 @@ const enableAdForm = () => {
 }
 
 
-const selectType = (value) => {
-  switch (value) {
+const selectType = () => {
+  let type = typeSelectElement.value
+  switch (type) {
     case ('bungalow'):
       priceElement.setAttribute('placeholder', '0');
       priceElement.setAttribute('min', '0');
@@ -50,14 +55,17 @@ const selectType = (value) => {
 
 const setType = () => {
   selectType(typeSelectElement.value)
-  typeSelectElement.addEventListener('change', evt => {selectType(evt.target.value);
+  typeSelectElement.addEventListener('change', selectType
   // addValidator(priceElement)
-  })
+  )
 }
 
+const setTimeOut = evt => timeOutSelect.options.selectedIndex = evt.target.options.selectedIndex
+const setTimeIn = evt => timeInSelect.options.selectedIndex = evt.target.options.selectedIndex
+
 const setTime = () => {
-  timeInSelect.addEventListener('change', evt => timeOutSelect.options.selectedIndex = evt.target.options.selectedIndex)
-  timeOutSelect.addEventListener('change', evt => timeInSelect.options.selectedIndex = evt.target.options.selectedIndex)
+  timeInSelect.addEventListener('change', setTimeOut)
+  timeOutSelect.addEventListener('change',setTimeIn )
 }
 
 export {disableAdForm, enableAdForm}

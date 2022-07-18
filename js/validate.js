@@ -1,12 +1,8 @@
 let adFormElement = document.querySelector('.ad-form')
-let submitButton = adFormElement.querySelector('.ad-form__submit')
 let rooms = adFormElement.querySelector('#room_number')
 let capacity = adFormElement.querySelector('#capacity')
-let elem = adFormElement.querySelector('.ad-form__header')
-let setAddressElement = adFormElement.querySelector('#address')
 
 const priceElement = document.querySelector('#price')
-const selectType = document.querySelector('#type')
 const CONFIG_PRISTINE = {
   classTo: 'ad-form__element', //выбор элементов для валидации
   errorClass: 'form__error',  //добавляет класс (для изменения цвета текста если валидация не пройдена)
@@ -47,6 +43,7 @@ const getRoomsCapacity = () => {
   }
   return !msg.length
 }
+
 //функция валидации цены жилья
 let errorsPrice = []
 const getValidPrice = ()=> {
@@ -57,45 +54,20 @@ errorsPrice.push(`Минимальная цена ${Number(priceElement.min)} р
   }
   return !errorsPrice.length
 }
-// функция валидации адреса
-let errorAddress =[]
 
-  const getValidAddress = () =>{
-  errorAddress.length =0
-  if (!setAddressElement.value) {
-   console.log(setAddressElement.value+'11')
-    errorAddress.push('no address')
-  }
-  return !errorAddress.length
-  }
-
-
-
-//Pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
-//Pristine.addValidator('rooms', getRoomsCapacity, () => msg, 5, false)
 const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
-let run
-const startValidate = (cb) => {
- // const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
 
+const startValidate = (cb) => {
    if (cb) {
    pristine.validate(cb);
- //   const pristine = new Pristine(adFormElement, CONFIG_PRISTINE);
     console.log('dfd')
   } else {
      pristine.addValidator(rooms, getRoomsCapacity, () => msg, 5, false)
      pristine.addValidator(priceElement, getValidPrice, () => errorsPrice, 5, false)
-   //  pristine.addValidator(setAddressElement, getValidAddress, () => errorAddress, 5, false)
-// setAddressElement.addEventListener('input', () => pristine.validate(setAddressElement))
      capacity.addEventListener('change', () => {
        pristine.validate(rooms)
      });
- //    selectType.addEventListener('change', () => {
-//       pristine.validate(priceElement)})
-     //  priceElement.addEventListener('change', () => pristine.validate(priceElement))
-     // setAddressElement.addEventListener('input', () => pristine.validate(setAddressElement))
-     //  const sliderElement = document.querySelector('.ad-form__slider')
-//  sliderElement.noUiSlider.on('update', (...rest) => {pristine.validate(priceElement)})
+
      pristine.validate();
      adFormElement.onsubmit = (evt) => {
        if (!pristine.validate() || 0) {

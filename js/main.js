@@ -19,7 +19,11 @@ import {getUiSlider} from "./slider.js";
  */
 disableAdForm();
 
-getMap(enableAdForm, startValidate, getAllAdverts(COUNT_ADVERTS))
-getUiSlider()
+const runOnLoadMap = () => {
+  enableAdForm();
+  startValidate();
+  getUiSlider();
+}
 
-export {enableAdForm}
+getMap(enableAdForm, startValidate, getUiSlider, disableAdForm, getAllAdverts(COUNT_ADVERTS))
+

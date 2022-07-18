@@ -48,13 +48,12 @@ const icon = L.icon({
   iconAnchor: [20, 40],
 });
 
-const getMap = (cb1, cb2, array) => {
+const getMap = (cb1, cb2, cb3, cb4, array) => {
   map.on('load', () => {
     console.log('map loaded');
     cb1();
-    cb2()
-    //enableAdForm();
-    //  startValidate()
+    cb2();
+    cb3()
   })
     .setView({lat: 35.6883, lng: 139.7735}, 10)
 
@@ -68,6 +67,10 @@ const getMap = (cb1, cb2, array) => {
   resetButton.addEventListener('click', () => {
     setDefaultViewMap();
     setTimeout(() => startValidate(setAddressElement), 400)
+    adFormElement.reset()
+    cb4();
+    cb1();
+    cb3(1)
   });
 
   array.forEach((item) => {
