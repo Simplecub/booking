@@ -6,13 +6,14 @@ import {getMap} from "./map.js";
 import {getUiSlider} from "./slider.js";
 import {getData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
-import {enableFilter, disableFilter} from "./filter-map.js";
+import {enableFilter, disableFilter, onFiltered} from "./filter-map.js";
 
+const filterFormElement = document.querySelector('.map__filters')
 document.addEventListener('DOMContentLoaded', async () => {
   disableAdForm();
   disableFilter()
 
-  const {setMarkers,addMainPin} = await getMap()
+  const {setMarkers, addMainPin} = await getMap()
   enableAdForm()
 
   const offers = await getData(showFailMsg).catch((e) => showFailMsg(e))
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   getUiSlider()
   startValidate()
   enableFilter()
+  filterFormElement.addEventListener('change', (evt) => setMarkers(onFiltered(evt, offers)))
+
 })
 
 

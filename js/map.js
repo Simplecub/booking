@@ -56,6 +56,7 @@ const icon = L.icon({
 const fullReset = () => {
   setDefaultViewMap();
   document.querySelector('.ad-form').reset()
+  document.querySelector('.map__filters').reset()
   disableAdForm()
   enableAdForm()
   getUiSlider(1)
@@ -105,6 +106,8 @@ const getMap = () => {
   }
 
   const setMarkers = (array) => {
+    markerGroup.clearLayers()
+    console.log(array)
     array.forEach((item) => createMarker(item))
   }
  // markerGroup.clearLayers()
