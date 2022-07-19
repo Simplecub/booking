@@ -2,7 +2,7 @@ import {sendData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 import {disableAdForm, enableAdForm} from "./form.js";
 import {getUiSlider} from "./slider.js";
-import {setDefaultViewMap} from "./map.js";
+import {fullReset, setDefaultViewMap} from "./map.js";
 
 const adFormElement = document.querySelector('.ad-form')
 const roomsElement = adFormElement.querySelector('#room_number')
@@ -86,20 +86,7 @@ const startValidate = (cb) => {
         sendData(
           () => {
             showSuccessMsg()
-            setDefaultViewMap();
-            adFormElement.reset()
-            setTimeout(() => {
-              startValidate(setAddressElement);
-              startValidate(roomsElement);
-              startValidate(priceElement);
-              startValidate(titleElement)
-            }, 400)
-            disableAdForm()
-            enableAdForm()
-            getUiSlider(1)
-            if (document.querySelector('.leaflet-popup')) {
-              document.querySelector('.leaflet-popup').remove()
-            }
+            fullReset()
           },
           () => {
             showFailMsg('Ошибка размещения объявления')
@@ -107,9 +94,9 @@ const startValidate = (cb) => {
           },
           new FormData(evt.target)
         )
-
       }
     }
   }
 }
+
 export {startValidate}

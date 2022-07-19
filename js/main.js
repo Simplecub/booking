@@ -9,8 +9,10 @@ import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
   disableAdForm();
+
   const {setMarkers,addMainPin} = await getMap()
   enableAdForm()
+
   const offers = await getData(showFailMsg).catch((e) => showFailMsg(e))
   setMarkers(offers)
   addMainPin()

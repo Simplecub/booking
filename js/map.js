@@ -52,7 +52,24 @@ const icon = L.icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40],
 });
+//мега -ресет Оо
+const fullReset = () =>{ setDefaultViewMap();
+  document.querySelector('.ad-form').reset()
+  disableAdForm()
+  enableAdForm()
+  getUiSlider(1)
+  setTimeout(() => {
+    startValidate(setAddressElement);
+    startValidate(roomsElement);
+    startValidate(priceElement);
+    startValidate(titleElement)
+  }, 400)
 
+  if (document.querySelector('.leaflet-popup')) {
+    document.querySelector('.leaflet-popup').remove()
+  }}
+
+//функция создания карты
 const getMap = () => {
   map.on('load', () => {
     console.log('map loaded');
@@ -65,24 +82,9 @@ const getMap = () => {
     setAddressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
     startValidate(setAddressElement)
   });
-//мега -ресет Оо
-  resetButton.addEventListener('click', () => {
-    setDefaultViewMap();
-    adFormElement.reset()
-    disableAdForm()
-    enableAdForm()
-    getUiSlider(1)
-    setTimeout(() => {
-      startValidate(setAddressElement);
-      startValidate(roomsElement);
-      startValidate(priceElement);
-      startValidate(titleElement)
-    }, 400)
 
-    if (document.querySelector('.leaflet-popup')) {
-      document.querySelector('.leaflet-popup').remove()
-    }
-  });
+
+  resetButton.addEventListener('click', fullReset);
 
  const setMarkers = (array) => {array.forEach((item) => {
     const {lat, lng} = item.location
@@ -101,4 +103,4 @@ const getMap = () => {
   return {setMarkers, addMainPin}
 }
 
-export {getMap, setDefaultViewMap}
+export {getMap, setDefaultViewMap, fullReset}
