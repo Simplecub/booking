@@ -1,15 +1,10 @@
-const getData = async (onsuccess, onFail) => {
-  try {
+const getData = async () => {
     const response = await fetch('https://26.javascript.pages.academy/keksobooking/data');
     if (!response.ok) {
-      onFail('Не удалось загрузить фото');
+      throw new Error('Не удалось загрузить фото');
     }
-    const array = await response.json();
-    onsuccess(array);
-  } catch {
-    onFail('Сервер не доступен!');
+    return await response.json();
   }
-};
 
 const sendData = async (onSuccess, onFail, body) => {
   try {

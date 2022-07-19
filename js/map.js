@@ -1,5 +1,7 @@
 import {startValidate} from "./validate.js";
 import {getPopup} from "./adverts-popup.js";
+import {getUiSlider} from "./slider.js";
+import {disableAdForm, enableAdForm} from "./form.js";
 
 const adFormElement = document.querySelector('.ad-form')
 const setAddressElement = adFormElement.querySelector('#address')
@@ -32,7 +34,7 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
-mainPinMarker.addTo(map);
+
 
 const setDefaultViewMap = () => {
   mainPinMarker.setLatLng({
@@ -51,15 +53,12 @@ const icon = L.icon({
   iconAnchor: [20, 40],
 });
 
-const getMap = (cb1, cb2, cb3, cb4, array) => {
+const getMap = () => {
   map.on('load', () => {
     console.log('map loaded');
-    cb1();
-    cb2();
-    cb3()
   })
     .setView({lat: 35.6883, lng: 139.7735}, 10)
-
+ const addMainPin = () => mainPinMarker.addTo(map);
 
   mainPinMarker.on('moveend', (evt) => {
     console.log(evt.target.getLatLng());
@@ -70,6 +69,9 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
   resetButton.addEventListener('click', () => {
     setDefaultViewMap();
     adFormElement.reset()
+    disableAdForm()
+    enableAdForm()
+    getUiSlider(1)
     setTimeout(() => {
       startValidate(setAddressElement);
       startValidate(roomsElement);
@@ -77,15 +79,12 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
       startValidate(titleElement)
     }, 400)
 
-    cb4();
-    cb1();
-    cb3(1)
     if (document.querySelector('.leaflet-popup')) {
       document.querySelector('.leaflet-popup').remove()
     }
   });
 
-  array.forEach((item) => {
+ const setMarkers = (array) => {array.forEach((item) => {
     const {lat, lng} = item.location
     const marker = L.marker({
         lat,
@@ -98,7 +97,8 @@ const getMap = (cb1, cb2, cb3, cb4, array) => {
       .addTo(map)
       .bindPopup(getPopup(item))
     //  .bindPopup(getPopup(item))
-  });
+  });}
+  return {setMarkers, addMainPin}
 }
 
 export {getMap, setDefaultViewMap}

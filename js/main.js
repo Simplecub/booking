@@ -7,9 +7,19 @@ import {getUiSlider} from "./slider.js";
 import {getData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 
+document.addEventListener('DOMContentLoaded', async () => {
+  disableAdForm();
+  const {setMarkers,addMainPin} = await getMap()
+  enableAdForm()
+  const offers = await getData(showFailMsg).catch((e) => showFailMsg(e))
+  setMarkers(offers)
+  addMainPin()
+  getUiSlider()
+  startValidate()
+})
 
-disableAdForm();
 
+/*
 //const array = getAllAdverts(COUNT_ADVERTS)
 getData((array) => {
   getMap(enableAdForm, startValidate, getUiSlider, disableAdForm, array);
@@ -22,3 +32,6 @@ getData((array) => {
 // onSuccess()
 
 
+
+
+ */

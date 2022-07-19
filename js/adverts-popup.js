@@ -33,11 +33,13 @@ const getPopup = (item) => {
 
   // В .popup__photos Каждая из строк массива photos должна записываться как атрибут src соответствующего изображения
   card.querySelector('.popup__photos').querySelectorAll('.popup__photo').forEach((item) => item.remove())
-  item.offer.photos.forEach((item) => {
-    let photo = photoElement.cloneNode(true)
-    photo.src = item;
-    card.querySelector('.popup__photos').appendChild(photo)
-  })
+  if (item.offer.photos) {
+    item.offer.photos.forEach((item) => {
+      let photo = photoElement.cloneNode(true)
+      photo.src = item;
+      card.querySelector('.popup__photos').appendChild(photo)
+    })
+  }
 
   card.querySelector('.popup__title').textContent = item.offer.title
   card.querySelector('.popup__text--address').textContent = item.offer.address
