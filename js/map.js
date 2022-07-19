@@ -53,7 +53,8 @@ const icon = L.icon({
   iconAnchor: [20, 40],
 });
 //мега -ресет Оо
-const fullReset = () =>{ setDefaultViewMap();
+const fullReset = () => {
+  setDefaultViewMap();
   document.querySelector('.ad-form').reset()
   disableAdForm()
   enableAdForm()
@@ -67,7 +68,8 @@ const fullReset = () =>{ setDefaultViewMap();
 
   if (document.querySelector('.leaflet-popup')) {
     document.querySelector('.leaflet-popup').remove()
-  }}
+  }
+}
 
 //функция создания карты
 const getMap = () => {
@@ -75,7 +77,7 @@ const getMap = () => {
     console.log('map loaded');
   })
     .setView({lat: 35.6883, lng: 139.7735}, 10)
- const addMainPin = () => mainPinMarker.addTo(map);
+  const addMainPin = () => mainPinMarker.addTo(map);
 
   mainPinMarker.on('moveend', (evt) => {
     console.log(evt.target.getLatLng());
@@ -86,7 +88,9 @@ const getMap = () => {
 
   resetButton.addEventListener('click', fullReset);
 
- const setMarkers = (array) => {array.forEach((item) => {
+  const markerGroup = L.layerGroup().addTo(map)
+
+  const createMarker = (item) => {
     const {lat, lng} = item.location
     const marker = L.marker({
         lat,
@@ -96,10 +100,14 @@ const getMap = () => {
         icon,
       },);
     marker
-      .addTo(map)
+      .addTo(markerGroup)
       .bindPopup(getPopup(item))
     //  .bindPopup(getPopup(item))
-  });}
+  }
+
+  const setMarkers = (array) => {
+    array.forEach((item) => createMarker(item))
+  }
   return {setMarkers, addMainPin}
 }
 
