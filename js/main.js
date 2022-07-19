@@ -6,9 +6,11 @@ import {getMap} from "./map.js";
 import {getUiSlider} from "./slider.js";
 import {getData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
+import {enableFilter, disableFilter} from "./filter-map.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
   disableAdForm();
+  disableFilter()
 
   const {setMarkers,addMainPin} = await getMap()
   enableAdForm()
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   addMainPin()
   getUiSlider()
   startValidate()
+  enableFilter()
 })
 
 

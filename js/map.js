@@ -87,9 +87,9 @@ const getMap = () => {
 
 
   resetButton.addEventListener('click', fullReset);
-
+//создается слой на который наносятся метки
   const markerGroup = L.layerGroup().addTo(map)
-
+//ф*я для создания одной метки и добавления её на слой markerGroup
   const createMarker = (item) => {
     const {lat, lng} = item.location
     const marker = L.marker({
@@ -102,12 +102,12 @@ const getMap = () => {
     marker
       .addTo(markerGroup)
       .bindPopup(getPopup(item))
-    //  .bindPopup(getPopup(item))
   }
 
   const setMarkers = (array) => {
     array.forEach((item) => createMarker(item))
   }
+ // markerGroup.clearLayers()
   return {setMarkers, addMainPin}
 }
 

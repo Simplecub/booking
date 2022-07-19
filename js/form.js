@@ -1,5 +1,5 @@
 const adFormElement = document.querySelector('.ad-form')
-const filterFormElement = document.querySelector('.map__filters')
+
 const typeSelectElement = adFormElement.querySelector('#type')
 const priceElement = adFormElement.querySelector('#price')
 const timeInSelect = adFormElement.querySelector('#timein')
@@ -8,9 +8,7 @@ const timeOutSelect = adFormElement.querySelector('#timeout')
 const disableAdForm = () => {
   adFormElement.classList.add('ad-form--disabled')
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.setAttribute('disabled', 'disabled'))
-  filterFormElement.classList.add('map__filters--disabled')
-  filterFormElement.querySelectorAll('select').forEach((item) => item.setAttribute('disabled', 'disabled'))
-  typeSelectElement.removeEventListener('change', selectType)
+ typeSelectElement.removeEventListener('change', selectType)
   timeInSelect.removeEventListener('change', setTimeOut)
   timeOutSelect.removeEventListener('change', setTimeIn)
 
@@ -19,9 +17,7 @@ const disableAdForm = () => {
 const enableAdForm = () => {
   adFormElement.classList.remove('ad-form--disabled')
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.disabled = false)
-  filterFormElement.classList.remove('map__filters--disabled')
-  filterFormElement.querySelectorAll('select').forEach((item) => item.disabled = false)
-  setType()
+ setType()
   setTime()
 }
 
