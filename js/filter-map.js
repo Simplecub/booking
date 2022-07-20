@@ -4,7 +4,14 @@ const priceElement = filterFormElement.querySelector('#housing-price')
 const roomsElement = filterFormElement.querySelector('#housing-rooms')
 const guestElement = filterFormElement.querySelector('#housing-guests')
 const features = filterFormElement.querySelector('#housing-features')
+
 const wifi = features.querySelector('#filter-wifi')
+const dishwasher = features.querySelector('#filter-dishwasher')
+const parking = features.querySelector('#filter-parking')
+const washer = features.querySelector('#filter-washer')
+const elevator = features.querySelector('#filter-elevator')
+const conditioner = features.querySelector('#filter-conditioner')
+
 const disableFilter = () => {
   filterFormElement.classList.add('map__filters--disabled')
   filterFormElement.querySelectorAll('select').forEach((item) => item.setAttribute('disabled', 'disabled'))
@@ -20,12 +27,14 @@ const enableFilter = () => {
 let res1 = []
 let res2 = []
 let res3 = []
-
+let feature = []
 const onFiltered = (evt, array) => {
   let filtered = array.slice()
   res1.length = 0
-  res1 = array.filter((item) =>
-    //условие для типа жилья
+  res2.length = 0
+  feature.length = 0
+  res1 = filtered.filter((item) =>
+      //условие для типа жилья
     (typeElement.value === item.offer.type || typeElement.value === 'any') &&
     //условие для цены
     (priceElement.value === 'any' ||
@@ -37,34 +46,40 @@ const onFiltered = (evt, array) => {
       Number(roomsElement.value) === item.offer.rooms) &&
     //условие для количества гостей
     (guestElement.value === 'any' ||
-      Number(guestElement.value) === item.offer.guests) &&
-    (!wifi.checked) ||
-   (wifi.checked && ~item.offer.features.indexOf(wifi.value))
+      Number(guestElement.value) === item.offer.guests)
+    /*
+       && ((!wifi.checked && (!item.offer.features || !item.offer.features.includes(wifi.value))) ||
+          (wifi.checked && item.offer.features && item.offer.features.includes(wifi.value))) &&
+        ((!dishwasher.checked) || (dishwasher.checked && item.offer.features && item.offer.features.includes(dishwasher.value))) &&
+        ((!parking.checked) || (parking.checked && item.offer.features && item.offer.features.includes(parking.value))) &&
+        ((!washer.checked) || (washer.checked && item.offer.features && item.offer.features.includes(washer.value))) &&
+        ((!elevator.checked) || (elevator.checked && item.offer.features && item.offer.features.includes(elevator.value))) &&
+        ((!conditioner.checked) || (conditioner.checked && item.offer.features && item.offer.features.includes(conditioner.value)))
+
+
+     */
   )
-  if (wifi.checked)
-  {console.log(wifi.value)}
-  //(array.indexOf(typeElement.value)!==-1 || typeElement.value === 'any') ? res1.push(array)
-  /*
+  if (wifi.checked) {
+    console.log(wifi.value)
+  }
+  let featuresAll = filterFormElement.querySelector('#housing-features').querySelectorAll('input')
 
-res1.length =0
-  res3.length=0
-  features.forEach((item) => {
-    if (item.checked) {res3.push(item.value)}
-  })
+  featuresAll.forEach((i) => i.checked ? feature.push(i.value) : feature)
+  console.log(feature);
+  console.log(feature.join(' '))
+  if (feature.length) {
+    res1.filter((item) => {
+      if (item.offer.features) {
+        console.log(item.offer.features.join(', '))
+        if (new RegExp(feature.sort().join('&')).test(item.offer.features.sort().join('&'))) {
+          res2.push(item)
+        }
+      }
+    })
+  } else res2 = res1
 
-res2.forEach((item) => {
-  console.log(item.offer.features);
-  if (res3.includes(item.offer.features)) {
-      res1.push(item)
-    }
-
-  })
-
-
-
-   */
-  console.log(res3)
-  return res1
+  console.log(res2)
+  return res2
 }
 
 export {enableFilter, disableFilter, onFiltered}
