@@ -47,6 +47,7 @@ const onFiltered = (evt, array) => {
     //условие для количества гостей
     (guestElement.value === 'any' ||
       Number(guestElement.value) === item.offer.guests)
+  )
     /*
        && ((!wifi.checked && (!item.offer.features || !item.offer.features.includes(wifi.value))) ||
           (wifi.checked && item.offer.features && item.offer.features.includes(wifi.value))) &&
@@ -55,15 +56,29 @@ const onFiltered = (evt, array) => {
         ((!washer.checked) || (washer.checked && item.offer.features && item.offer.features.includes(washer.value))) &&
         ((!elevator.checked) || (elevator.checked && item.offer.features && item.offer.features.includes(elevator.value))) &&
         ((!conditioner.checked) || (conditioner.checked && item.offer.features && item.offer.features.includes(conditioner.value)))
-
-
      */
-  )
-  if (wifi.checked) {
-    console.log(wifi.value)
-  }
-  let featuresAll = filterFormElement.querySelector('#housing-features').querySelectorAll('input')
 
+  const equal = (arr) => {
+    let rank = 0
+    if (arr.offer.features) {
+    if (wifi.checked && arr.offer.features.includes(wifi.value)) { rank +=1 }
+    if (dishwasher.checked && arr.offer.features.includes(dishwasher.value)) {rank +=1}
+    if (parking.checked && arr.offer.features.includes(parking.value)) {rank +=1}
+    if (washer.checked && arr.offer.features.includes(washer.value)) {rank +=1}
+    if (elevator.checked && arr.offer.features.includes(elevator.value)) {rank +=1}
+    if (conditioner.checked && arr.offer.features.includes(conditioner.value)) {rank +=1}
+    }
+    return rank
+}
+const compare = (a,b) => {
+    const arank = equal(a)
+  const  brank = equal(b)
+  return brank - arank
+}
+
+res1.sort(compare)
+  /*
+  let featuresAll = filterFormElement.querySelector('#housing-features').querySelectorAll('input')
   featuresAll.forEach((i) => i.checked ? feature.push(i.value) : feature)
   console.log(feature);
   console.log(feature.join(' '))
@@ -78,8 +93,10 @@ const onFiltered = (evt, array) => {
     })
   } else res2 = res1
 
-  console.log(res2)
-  return res2
+
+   */
+  console.log(res1)
+  return res1
 }
 
 export {enableFilter, disableFilter, onFiltered}

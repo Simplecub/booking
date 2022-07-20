@@ -1,4 +1,7 @@
 const adFormElement = document.querySelector('.ad-form')
+const selectAvatarForm = adFormElement.querySelector('#avatar')
+const previewAvatarElement = adFormElement.querySelector('.ad-form-header__preview')
+const uploadPhoto = adFormElement.querySelector('.ad-form__photo-container')
 
 const typeSelectElement = adFormElement.querySelector('#type')
 const priceElement = adFormElement.querySelector('#price')
@@ -11,12 +14,16 @@ const disableAdForm = () => {
  typeSelectElement.removeEventListener('change', selectType)
   timeInSelect.removeEventListener('change', setTimeOut)
   timeOutSelect.removeEventListener('change', setTimeIn)
+  selectAvatarForm.removeEventListener('change', showPreviewAvatar)
+  uploadPhoto.removeEventListener('change', showPreviewPhoto)
 
 }
 
 const enableAdForm = () => {
   adFormElement.classList.remove('ad-form--disabled')
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.disabled = false)
+  selectAvatarForm.addEventListener('change', showPreviewAvatar)
+  uploadPhoto.addEventListener('change', showPreviewPhoto)
  setType()
   setTime()
 }
@@ -60,5 +67,32 @@ const setTime = () => {
   timeInSelect.addEventListener('change', setTimeOut)
   timeOutSelect.addEventListener('change', setTimeIn)
 }
+
+//функция предварительного просмотра фото - фотография должна загружаться в поле загрузки файлов в форме загрузки и показываться в окне.
+const FILE_TYPE = ['gif', 'jpg', 'jpeg', 'png'];
+const showPreviewAvatar = () => {
+  const file = selectAvatarForm.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPE.some((it) => {
+    return fileName.endsWith(it);
+  });
+  if (matches) {
+    previewAvatarElement.querySelector('img').src = URL.createObjectURL(file);
+  }
+};
+
+const showPreviewPhoto = () => {
+  const file = uploadPhoto.querySelector('#images').files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPE.some((it) => {
+    return fileName.endsWith(it);
+  });
+  if (matches) {
+    uploadPhoto.querySelector('.ad-form__photo').innerHTML =
+      `<img src=${URL.createObjectURL(file)} alt="Аватар пользователя" width="70" height="70">`
+  }
+};
+
+
 
 export {disableAdForm, enableAdForm}
