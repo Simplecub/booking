@@ -3,7 +3,8 @@ const typeElement = filterFormElement.querySelector('#housing-type')
 const priceElement = filterFormElement.querySelector('#housing-price')
 const roomsElement = filterFormElement.querySelector('#housing-rooms')
 const guestElement = filterFormElement.querySelector('#housing-guests')
-const features = filterFormElement.querySelector('#housing-features').querySelectorAll('input')
+const features = filterFormElement.querySelector('#housing-features')
+const wifi = features.querySelector('#filter-wifi')
 const disableFilter = () => {
   filterFormElement.classList.add('map__filters--disabled')
   filterFormElement.querySelectorAll('select').forEach((item) => item.setAttribute('disabled', 'disabled'))
@@ -36,9 +37,12 @@ const onFiltered = (evt, array) => {
       Number(roomsElement.value) === item.offer.rooms) &&
     //условие для количества гостей
     (guestElement.value === 'any' ||
-      Number(guestElement.value) === item.offer.guests)
+      Number(guestElement.value) === item.offer.guests) &&
+    (!wifi.checked) ||
+   (wifi.checked && ~item.offer.features.indexOf(wifi.value))
   )
-
+  if (wifi.checked)
+  {console.log(wifi.value)}
   //(array.indexOf(typeElement.value)!==-1 || typeElement.value === 'any') ? res1.push(array)
   /*
 
