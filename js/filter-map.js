@@ -23,46 +23,25 @@ let res3 = []
 const onFiltered = (evt, array) => {
   let filtered = array.slice()
   res1.length = 0
-  filtered.forEach((item) => {
-      console.log(typeElement.value)
-      if (typeElement.value === item.offer.type || typeElement.value === 'any') {
-        res1.push(item)
-      }
-    }
+  res1 = array.filter((item) =>
+    //условие для типа жилья
+    (typeElement.value === item.offer.type || typeElement.value === 'any') &&
+    //условие для цены
+    (priceElement.value === 'any' ||
+      priceElement.value === 'middle' && (item.offer.price >= 10000 && item.offer.price < 50000) ||
+      priceElement.value === 'low' && item.offer.price < 10000 ||
+      priceElement.value === 'high' && item.offer.price >= 50000) &&
+    //условие для количества комнат
+    (roomsElement.value === 'any' ||
+      Number(roomsElement.value) === item.offer.rooms) &&
+    //условие для количества гостей
+    (guestElement.value === 'any' ||
+      Number(guestElement.value) === item.offer.guests)
   )
-  res2.length = 0
-  res1.forEach((item) => {
-      if (priceElement.value === 'any') {
-        res2.push(item)
-      }
-      if (priceElement.value === 'middle' && (item.offer.price >= 10000 && item.offer.price < 50000)) {
-        res2.push(item)
-      }
-      if (priceElement.value === 'low' && item.offer.price < 10000) {
-        res2.push(item)
-      }
-      if (priceElement.value === 'high' && item.offer.price >= 50000) {
-        res2.push(item)
-      }
-    }
-  )
-  res1.length = 0
-  res2.forEach((item) => {
-    if (roomsElement.value === 'any') {
-      res1.push(item)
-    }
-    if (Number(roomsElement.value) === item.offer.rooms) {
-      res1.push(item)
-    }
-  })
-  res2.length=0
-  res1.forEach((item) =>{
-    if (guestElement.value === 'any')
-    {res2.push(item)}
-    if(Number(guestElement.value) === item.offer.guests )
-    {res2.push(item)}
 
-  })
+  //(array.indexOf(typeElement.value)!==-1 || typeElement.value === 'any') ? res1.push(array)
+  /*
+
 res1.length =0
   res3.length=0
   features.forEach((item) => {
@@ -78,8 +57,10 @@ res2.forEach((item) => {
   })
 
 
+
+   */
   console.log(res3)
-  return res2
+  return res1
 }
 
 export {enableFilter, disableFilter, onFiltered}
