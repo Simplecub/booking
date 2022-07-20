@@ -89,7 +89,7 @@ const showPreviewPhoto = () => {
   });
   if (matches) {
     uploadPhoto.querySelector('.ad-form__photo').innerHTML =
-      `<img src=${URL.createObjectURL(file)} alt="Аватар пользователя" width="70" height="70">`
+      `<img src=${URL.createObjectURL(file)} alt="Фотография жилья" width="70" height="70">`
   }
 };
 
