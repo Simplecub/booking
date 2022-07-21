@@ -53,6 +53,7 @@ const compare = (a,b) => {
 }
 
 let res1 = []
+//мега-фильтр !!!
 const onFiltered = (evt, array) => {
   res1.length = 0
 
