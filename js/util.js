@@ -41,7 +41,7 @@ const getDebounce = (callback, timeoutDelay) => {
   };
 };
 
-function throttle (callback, delayBetweenFrames) {
+function throttle(callback, delayBetweenFrames) {
   // Используем замыкания, чтобы время "последнего кадра" навсегда приклеилось
   // к возвращаемой функции с условием, тогда мы его сможем перезаписывать
   let lastTime = 0;

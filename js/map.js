@@ -44,7 +44,7 @@ const setDefaultViewMap = () => {
   map.setView({
     lat: 35.6883,
     lng: 139.7735,
-  }, 10);
+  }, 12);
 }
 
 const icon = L.icon({
@@ -70,7 +70,9 @@ const fullReset = (cb) => {
   if (document.querySelector('.leaflet-popup')) {
     document.querySelector('.leaflet-popup').remove()
   }
-  if (cb) {cb()}
+  if (cb) {
+    cb()
+  }
 }
 
 //функция создания карты
@@ -78,7 +80,7 @@ const getMap = () => {
   map.on('load', () => {
     console.log('map loaded');
   })
-    .setView({lat: 35.6883, lng: 139.7735}, 10)
+    .setView({lat: 35.6883, lng: 139.7735}, 12)
   const addMainPin = () => mainPinMarker.addTo(map);
 
   mainPinMarker.on('moveend', (evt) => {
@@ -86,7 +88,6 @@ const getMap = () => {
     setAddressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
     startValidate(setAddressElement)
   });
-
 
 
 //создается слой на который наносятся метки
@@ -111,7 +112,7 @@ const getMap = () => {
     console.log(array)
     array.forEach((item) => createMarker(item))
   }
- // markerGroup.clearLayers()
+  // markerGroup.clearLayers()
 
 
   return {setMarkers, addMainPin}

@@ -28,9 +28,9 @@ const getPopup = (item) => {
       }
     })
   }
-if (item.offer.features) {
-  getModifierLi(item.offer.features, allPopups, 'popup__feature--')
-}
+  if (item.offer.features) {
+    getModifierLi(item.offer.features, allPopups, 'popup__feature--')
+  }
 
   // В .popup__photos Каждая из строк массива photos должна записываться как атрибут src соответствующего изображения
   card.querySelector('.popup__photos').querySelectorAll('.popup__photo').forEach((item) => item.remove())
@@ -58,7 +58,7 @@ if (item.offer.features) {
     }
   })
   //if (card.querySelectorAll('.popup__feature').length === 0) {
- //   card.querySelector('.popup__features').classList.add('hidden')
+  //   card.querySelector('.popup__features').classList.add('hidden')
 //  }
   return card
 }

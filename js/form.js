@@ -11,15 +11,15 @@ const timeOutSelect = adFormElement.querySelector('#timeout')
 const disableAdForm = () => {
   adFormElement.classList.add('ad-form--disabled')
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.setAttribute('disabled', 'disabled'))
- typeSelectElement.removeEventListener('change', selectType)
+  typeSelectElement.removeEventListener('change', selectType)
   timeInSelect.removeEventListener('change', setTimeOut)
   timeOutSelect.removeEventListener('change', setTimeIn)
   selectAvatarForm.removeEventListener('change', showPreviewAvatar)
   uploadPhoto.removeEventListener('change', showPreviewPhoto)
- previewAvatarElement.querySelector('img').src = 'img/muffin-grey.svg'
-if(uploadPhoto.querySelector('.ad-form__photo').querySelector('img')) {
-  uploadPhoto.querySelector('.ad-form__photo').querySelector('img').remove()
-}
+  previewAvatarElement.querySelector('img').src = 'img/muffin-grey.svg'
+  if (uploadPhoto.querySelector('.ad-form__photo').querySelector('img')) {
+    uploadPhoto.querySelector('.ad-form__photo').querySelector('img').remove()
+  }
 
 
 }
@@ -29,7 +29,7 @@ const enableAdForm = () => {
   adFormElement.querySelectorAll('fieldset').forEach((item) => item.disabled = false)
   selectAvatarForm.addEventListener('change', showPreviewAvatar)
   uploadPhoto.addEventListener('change', showPreviewPhoto)
- setType()
+  setType()
   setTime()
 }
 
@@ -98,7 +98,6 @@ const showPreviewPhoto = () => {
       `<img src=${URL.createObjectURL(file)} alt="Фотография жилья" width="70" height="70">`
   }
 };
-
 
 
 export {disableAdForm, enableAdForm}

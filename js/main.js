@@ -28,23 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   enableFilter()
 
   filterFormElement.addEventListener('change', getDebounce(() => setMarkers(onFiltered(offers)), TIME_OUT))
-  resetButton.addEventListener('click', ()=>fullReset(()=>setMarkers(offers.slice(0, 10))));
+  resetButton.addEventListener('click', () => fullReset(() => setMarkers(offers.slice(0, 10))));
 })
 
 
-/*
-//const array = getAllAdverts(COUNT_ADVERTS)
-getData((array) => {
-  getMap(enableAdForm, startValidate, getUiSlider, disableAdForm, array);
-}, (i) => {
-  showFailMsg(i)
-  console.log(i)
-})
-
-//showFailMsg()
-// onSuccess()
-
-
-
-
- */

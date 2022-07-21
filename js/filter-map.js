@@ -36,19 +36,31 @@ const filterGuests = (item) => guestElement.value === 'any' || Number(guestEleme
 const equal = (arr) => {
   let rank = 0
   if (arr.offer.features) {
-    if (arr.offer.features.includes(wifi.value)) { rank +=1 }
-    if (arr.offer.features.includes(dishwasher.value)) {rank +=1}
-    if (arr.offer.features.includes(parking.value)) {rank +=1}
-    if (arr.offer.features.includes(washer.value)) {rank +=1}
-    if (arr.offer.features.includes(elevator.value)) {rank +=1}
-    if (arr.offer.features.includes(conditioner.value)) {rank +=1}
+    if (arr.offer.features.includes(wifi.value)) {
+      rank += 1
+    }
+    if (arr.offer.features.includes(dishwasher.value)) {
+      rank += 1
+    }
+    if (arr.offer.features.includes(parking.value)) {
+      rank += 1
+    }
+    if (arr.offer.features.includes(washer.value)) {
+      rank += 1
+    }
+    if (arr.offer.features.includes(elevator.value)) {
+      rank += 1
+    }
+    if (arr.offer.features.includes(conditioner.value)) {
+      rank += 1
+    }
   }
   return rank
 }
 // ф-я сравнения которая потом пойдет в sort(compare)
-const compare = (a,b) => {
+const compare = (a, b) => {
   const arank = equal(a)
-  const  brank = equal(b)
+  const brank = equal(b)
   return brank - arank
 }
 
@@ -63,12 +75,12 @@ const onFiltered = (array) => {
     .filter(filterPrice)
     .filter(filterRooms)
     .filter(filterGuests)
-    .filter((i)=> wifi.checked && i.offer.features && i.offer.features.includes(wifi.value) || (!wifi.checked))
-    .filter((i)=> dishwasher.checked && i.offer.features && i.offer.features.includes(dishwasher.value) ||(!dishwasher.checked))
-    .filter((i)=> parking.checked && i.offer.features && i.offer.features.includes(parking.value) || (!parking.checked))
-    .filter((i)=> washer.checked && i.offer.features && i.offer.features.includes(washer.value)|| (!washer.checked))
-    .filter((i)=> elevator.checked && i.offer.features && i.offer.features.includes(elevator.value) || (!elevator.checked))
-    .filter((i)=> conditioner.checked && i.offer.features && i.offer.features.includes(conditioner.value) || (!conditioner.checked))
+    .filter((i) => wifi.checked && i.offer.features && i.offer.features.includes(wifi.value) || (!wifi.checked))
+    .filter((i) => dishwasher.checked && i.offer.features && i.offer.features.includes(dishwasher.value) || (!dishwasher.checked))
+    .filter((i) => parking.checked && i.offer.features && i.offer.features.includes(parking.value) || (!parking.checked))
+    .filter((i) => washer.checked && i.offer.features && i.offer.features.includes(washer.value) || (!washer.checked))
+    .filter((i) => elevator.checked && i.offer.features && i.offer.features.includes(elevator.value) || (!elevator.checked))
+    .filter((i) => conditioner.checked && i.offer.features && i.offer.features.includes(conditioner.value) || (!conditioner.checked))
 
   console.log(res1)
   return res1.slice(0, 10)
