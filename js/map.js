@@ -77,11 +77,11 @@ const fullReset = (cb) => {
 
 //функция создания карты
 const getMap = () => {
-  map.on('load', () => {
-    console.log('map loaded');
-  })
-    .setView({lat: 35.6883, lng: 139.7735}, 12)
+return new Promise((resolve, reject) => {
+
+  const errorTimeout = setTimeout(reject, 10000) //
   const addMainPin = () => mainPinMarker.addTo(map);
+
 
   mainPinMarker.on('moveend', (evt) => {
     console.log(evt.target.getLatLng());
@@ -113,9 +113,13 @@ const getMap = () => {
     array.forEach((item) => createMarker(item))
   }
   // markerGroup.clearLayers()
-
-
-  return {setMarkers, addMainPin}
+  map.on('load', () => {
+    console.log('map loaded');
+    clearTimeout(errorTimeout);
+    resolve({setMarkers, addMainPin})
+  })
+    .setView({lat: 35.6883, lng: 139.7735}, 12)
+})
 }
 
 export {getMap, setDefaultViewMap, fullReset}

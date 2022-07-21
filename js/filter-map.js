@@ -81,7 +81,7 @@ const onFiltered = (array) => {
     .filter((i) => washer.checked && i.offer.features && i.offer.features.includes(washer.value) || (!washer.checked))
     .filter((i) => elevator.checked && i.offer.features && i.offer.features.includes(elevator.value) || (!elevator.checked))
     .filter((i) => conditioner.checked && i.offer.features && i.offer.features.includes(conditioner.value) || (!conditioner.checked))
-
+//every
   console.log(res1)
   return res1.slice(0, 10)
 }
