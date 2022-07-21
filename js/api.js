@@ -1,5 +1,5 @@
 const getData = async () => {
-    const response = await fetch('https77://26.javascript.pages.academy/keksobooking/data');
+    const response = await fetch('https://26.javascript.pages.academy/keksobooking/data');
     if (!response.ok) {
       throw new Error('Не удалось загрузить фото');
     }
