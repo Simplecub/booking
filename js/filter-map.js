@@ -61,12 +61,12 @@ const onFiltered = (evt, array) => {
   const equal = (arr) => {
     let rank = 0
     if (arr.offer.features) {
-    if (wifi.checked && arr.offer.features.includes(wifi.value)) { rank +=1 }
-    if (dishwasher.checked && arr.offer.features.includes(dishwasher.value)) {rank +=1}
-    if (parking.checked && arr.offer.features.includes(parking.value)) {rank +=1}
-    if (washer.checked && arr.offer.features.includes(washer.value)) {rank +=1}
-    if (elevator.checked && arr.offer.features.includes(elevator.value)) {rank +=1}
-    if (conditioner.checked && arr.offer.features.includes(conditioner.value)) {rank +=1}
+    if (arr.offer.features.includes(wifi.value)) { rank +=1 }
+    if (arr.offer.features.includes(dishwasher.value)) {rank +=1}
+    if (arr.offer.features.includes(parking.value)) {rank +=1}
+    if (arr.offer.features.includes(washer.value)) {rank +=1}
+    if (arr.offer.features.includes(elevator.value)) {rank +=1}
+    if (arr.offer.features.includes(conditioner.value)) {rank +=1}
     }
     return rank
 }
@@ -75,8 +75,20 @@ const compare = (a,b) => {
   const  brank = equal(b)
   return brank - arank
 }
+const getFilterItem = (arr, feature) => {
+return arr.filter((i)=> feature.checked && i.offer.features && i.offer.features.includes(feature.value) || (!feature.checked))
+}
 
-res1.sort(compare)
+res2 = res1.sort(compare)
+  .filter((i)=> wifi.checked && i.offer.features && i.offer.features.includes(wifi.value) || (!wifi.checked))
+  .filter((i)=> dishwasher.checked && i.offer.features && i.offer.features.includes(dishwasher.value) ||(!dishwasher.checked))
+  .filter((i)=> parking.checked && i.offer.features && i.offer.features.includes(parking.value) || (!parking.checked))
+  .filter((i)=> washer.checked && i.offer.features && i.offer.features.includes(washer.value)|| (!washer.checked))
+  .filter((i)=> elevator.checked && i.offer.features && i.offer.features.includes(elevator.value) || (!elevator.checked))
+  .filter((i)=> conditioner.checked && i.offer.features && i.offer.features.includes(conditioner.value) || (!conditioner.checked))
+
+ res3 = getFilterItem(getFilterItem(getFilterItem(getFilterItem(getFilterItem(getFilterItem(res2,wifi), dishwasher), parking),washer),elevator), conditioner)
+
   /*
   let featuresAll = filterFormElement.querySelector('#housing-features').querySelectorAll('input')
   featuresAll.forEach((i) => i.checked ? feature.push(i.value) : feature)
@@ -95,8 +107,9 @@ res1.sort(compare)
 
 
    */
-  console.log(res1)
-  return res1
+  console.log(res2)
+  console.log(res3)
+  return res3
 }
 
 export {enableFilter, disableFilter, onFiltered}

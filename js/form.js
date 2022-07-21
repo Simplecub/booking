@@ -82,6 +82,7 @@ const showPreviewAvatar = () => {
 };
 
 const showPreviewPhoto = () => {
+
   const file = uploadPhoto.querySelector('#images').files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPE.some((it) => {
