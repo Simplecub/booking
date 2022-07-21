@@ -16,6 +16,11 @@ const disableAdForm = () => {
   timeOutSelect.removeEventListener('change', setTimeIn)
   selectAvatarForm.removeEventListener('change', showPreviewAvatar)
   uploadPhoto.removeEventListener('change', showPreviewPhoto)
+ previewAvatarElement.querySelector('img').src = 'img/muffin-grey.svg'
+if(uploadPhoto.querySelector('.ad-form__photo').querySelector('img')) {
+  uploadPhoto.querySelector('.ad-form__photo').querySelector('img').remove()
+}
+
 
 }
 
