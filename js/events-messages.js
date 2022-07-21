@@ -1,21 +1,18 @@
+import {removeMessageEl} from "./util.js";
+
 const errorElement = document.querySelector('#error').content.cloneNode(true)
 const successElement = document.querySelector('#success').content.cloneNode(true)
 
 const showFailMsg = (msg) => {
-  errorElement.querySelector('.error__message').textContent = msg
-  document.body.appendChild(errorElement.cloneNode(true))
-  document.body.querySelector('.error__button').addEventListener('click', () => {
-    document.body.querySelector('.error').remove()
-  }, {once: true})
-  console.log(errorElement)
+  errorElement.querySelector('.error__message').textContent = msg;
+  document.body.appendChild(errorElement.cloneNode(true));
+  removeMessageEl('error');
 }
 
 const showSuccessMsg = () => {
-  document.body.append(successElement.cloneNode(true))
-  console.log(successElement)
-  setTimeout(() => {
-    document.body.querySelector('.success').remove()
-  }, 3000)
+  document.body.append(successElement.cloneNode(true));
+  removeMessageEl('success');
+  // setTimeout(() => {document.body.querySelector('.success').remove()}, 2000);
 }
 
 

@@ -28,9 +28,6 @@ const getAvatar = (a, b) => {
   return res
 }
 
-const isEscapeKey = (evt) => {
-  return evt.key === 'Escape'
-}
 
 //функция обновление списка элементов, подходящих под фильтры, -  не чаще, чем один раз в полсекунды.
 const getDebounce = (callback, timeoutDelay) => {
@@ -40,6 +37,18 @@ const getDebounce = (callback, timeoutDelay) => {
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
 };
+
+
+const removeMessageEl = (el) => {
+  const removed = () => document.body.querySelector(`.${el}`).remove();
+  document.body.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      removed()
+    }
+  }, {once: true})
+  document.body.querySelector(`.${el}`).addEventListener('click', removed, {once: true})
+}
+
 
 function throttle(callback, delayBetweenFrames) {
   // Используем замыкания, чтобы время "последнего кадра" навсегда приклеилось
@@ -67,6 +76,6 @@ export {
   getShuffleArray,
   getAvatar,
   getElementsAmount,
-  isEscapeKey,
+  removeMessageEl,
   getDebounce
 }
