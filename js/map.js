@@ -70,7 +70,7 @@ const fullReset = (cb) => {
   if (document.querySelector('.leaflet-popup')) {
     document.querySelector('.leaflet-popup').remove()
   }
-  cb()
+  if (cb) {cb()}
 }
 
 //функция создания карты
