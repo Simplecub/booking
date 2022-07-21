@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const {setMarkers, addMainPin} = await getMap()
   enableAdForm()
-
-  const offers = await getData(showFailMsg).catch((e) => showFailMsg(e))
-  setMarkers(offers.slice(0, 10))
   addMainPin()
   getUiSlider()
   startValidate()
+
+  const offers = await getData(showFailMsg).catch((e) => showFailMsg(e))
+  setMarkers(offers.slice(0, 10))
+
+
   enableFilter()
 
   filterFormElement.addEventListener('change', getDebounce(() => setMarkers(onFiltered(offers)), TIME_OUT))
