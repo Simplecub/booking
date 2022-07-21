@@ -1,5 +1,5 @@
 import {getAllAdverts} from "./mock-adverts.js";
-import {COUNT_ADVERTS} from "./mock-data.js";
+import {getDebounce} from "./util.js";
 import {disableAdForm, enableAdForm} from "./form.js";
 import {startValidate} from "./validate.js";
 import {getMap} from "./map.js";
@@ -7,7 +7,7 @@ import {getUiSlider} from "./slider.js";
 import {getData} from "./api.js";
 import {showFailMsg, showSuccessMsg} from "./events-messages.js";
 import {enableFilter, disableFilter, onFiltered} from "./filter-map.js";
-
+const TIME_OUT = 500;
 const filterFormElement = document.querySelector('.map__filters')
 document.addEventListener('DOMContentLoaded', async () => {
   disableAdForm();
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   getUiSlider()
   startValidate()
   enableFilter()
-  filterFormElement.addEventListener('change', (evt) => setMarkers(onFiltered(evt, offers)))
+  filterFormElement.addEventListener('change', getDebounce((evt) => setMarkers(onFiltered(evt, offers)), TIME_OUT))
 
 })
 
