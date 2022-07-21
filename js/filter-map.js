@@ -54,7 +54,7 @@ const compare = (a,b) => {
 
 let res1 = []
 //мега-фильтр !!!
-const onFiltered = (evt, array) => {
+const onFiltered = (array) => {
   res1.length = 0
 
   res1 = array.slice()
@@ -71,7 +71,7 @@ const onFiltered = (evt, array) => {
     .filter((i)=> conditioner.checked && i.offer.features && i.offer.features.includes(conditioner.value) || (!conditioner.checked))
 
   console.log(res1)
-  return res1
+  return res1.slice(0, 10)
 }
 
 export {enableFilter, disableFilter, onFiltered}

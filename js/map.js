@@ -8,7 +8,7 @@ const setAddressElement = adFormElement.querySelector('#address')
 const roomsElement = adFormElement.querySelector('#room_number')
 const titleElement = adFormElement.querySelector('#title')
 const priceElement = adFormElement.querySelector('#price')
-const resetButton = adFormElement.querySelector('.ad-form__reset')
+
 
 const map = L.map('map-canvas')
 
@@ -53,7 +53,7 @@ const icon = L.icon({
   iconAnchor: [20, 40],
 });
 //мега -ресет Оо
-const fullReset = () => {
+const fullReset = (cb) => {
   setDefaultViewMap();
   document.querySelector('.ad-form').reset()
   document.querySelector('.map__filters').reset()
@@ -70,6 +70,7 @@ const fullReset = () => {
   if (document.querySelector('.leaflet-popup')) {
     document.querySelector('.leaflet-popup').remove()
   }
+  cb()
 }
 
 //функция создания карты
@@ -87,7 +88,7 @@ const getMap = () => {
   });
 
 
-  resetButton.addEventListener('click', fullReset);
+
 //создается слой на который наносятся метки
   const markerGroup = L.layerGroup().addTo(map)
 //ф*я для создания одной метки и добавления её на слой markerGroup
@@ -111,6 +112,8 @@ const getMap = () => {
     array.forEach((item) => createMarker(item))
   }
  // markerGroup.clearLayers()
+
+
   return {setMarkers, addMainPin}
 }
 
